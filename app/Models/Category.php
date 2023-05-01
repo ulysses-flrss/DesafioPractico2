@@ -10,32 +10,20 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class User
+ * Class Category
  * 
  * @property int $id
  * @property string $name
- * @property string $last_name
- * @property string $email
- * @property string $password
- * @property string $user_type
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
  * @package App\Models
  */
-class User extends Model
+class Category extends Model
 {
-	protected $table = 'users';
-
-	protected $hidden = [
-		'password'
-	];
+	protected $table = 'categories';
 
 	protected $fillable = [
-		'name',
-		'last_name',
-		'email',
-		'password',
-		'user_type'
+		'name'
 	];
 }

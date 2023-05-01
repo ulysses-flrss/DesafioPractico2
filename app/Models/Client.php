@@ -10,22 +10,22 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class User
+ * Class Client
  * 
  * @property int $id
  * @property string $name
  * @property string $last_name
  * @property string $email
  * @property string $password
- * @property string $user_type
+ * @property string $state
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
  * @package App\Models
  */
-class User extends Model
+class Client extends Model
 {
-	protected $table = 'users';
+	protected $table = 'clients';
 
 	protected $hidden = [
 		'password'
@@ -36,6 +36,6 @@ class User extends Model
 		'last_name',
 		'email',
 		'password',
-		'user_type'
+		'state'
 	];
 }
