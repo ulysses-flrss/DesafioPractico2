@@ -23,6 +23,12 @@
                                 @method('DELETE')
                                 <button type="submit">Eliminar</button>
                             </form>
+
+                            <form method="POST" action="{{ route('category.edit', ['category' => $cat]) }}">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit">Modificar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
