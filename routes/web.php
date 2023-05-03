@@ -35,10 +35,12 @@ Route::get('/register', function () {
     return view('register');
 })->name('client.register');
 
-
+Route::get('products/listar', [ClientController::class, 'listarProductos'] )->name('client.listar');
 
 Route::resource('user', UserController::class)->middleware('auth');
 Route::resource('product', ProductController::class)->middleware('auth');
 Route::resource('sale', SaleController::class)->middleware('auth');
 Route::resource('category', CategoryController::class)->middleware('auth');
 Route::resource('client', ClientController::class)->middleware('auth');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

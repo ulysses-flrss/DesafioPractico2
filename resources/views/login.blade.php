@@ -1,9 +1,10 @@
-@extends('layouts.layout')
+@extends('layouts.menu')
 
 @section('title', 'Inicia Sesión | Textil Export')
 
 @section('content')
 <div class="row">
+    
     <h1>Iniciar Sesión</h1>
     <form action="{{route('login.store')}}" class="col s12" method="POST">
     @csrf    

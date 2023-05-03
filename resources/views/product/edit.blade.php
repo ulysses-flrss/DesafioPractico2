@@ -42,7 +42,6 @@
                 @enderror
             </div>
         </div> --}}
-        <!-- TERMINAR LO DEL SELECT*/ -->
         <div class="input-field col s12">
             <select name="category" id="category">
                 @foreach ($categories as $cat)

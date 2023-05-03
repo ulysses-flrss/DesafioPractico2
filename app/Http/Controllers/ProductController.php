@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product; 
 use Illuminate\Http\Request;
 
+
 class ProductController extends Controller
 {
     /**
@@ -44,8 +45,8 @@ class ProductController extends Controller
             'description'=> ['required'],
             //'img'=> ['mimes:jpg,png'],
             'category'=> ['required'],
-            'price'=> ['required'],
-            'stock'=> ['required']
+            'price'=> ['required', 'min:0'],
+            'stock'=> ['required', 'min:0']
         ]);
 
         $product = new Product();

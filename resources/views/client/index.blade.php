@@ -11,7 +11,7 @@
             <th>Nombres del Cliente</th>
             <th>Apellidos del Cliente</th>
             <th>Correo del Cliente</th>
-            
+            <th>Estado</th>
         </thead>
 
         <tbody>
@@ -20,7 +20,8 @@
                         <td>{{$cli['id']}}</td>
                         <td>{{$cli['name']}}</td>
                         <td>{{$cli['last_name']}}</td>
-                        <td>{{$cli['email']}}</td></tr>
+                        <td>{{$cli['email']}}</td>
+
                         <td>{{$cli['state']}}</td>
                         <td>
                             <form method="POST" action="{{ route('client.destroy', ['client' => $cli]) }}">

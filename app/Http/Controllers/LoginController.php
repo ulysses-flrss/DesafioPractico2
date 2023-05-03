@@ -18,18 +18,20 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+        
+        
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->route('category.index');
         } else {
-            // $this->getClient($request);
-            if ($this->getClient($request)) {
+            if (Auth::attempt($credentials )) {
                 $request->session()->regenerate();
-                return dd('Cliente');
+                return redirect()->route('client.listar');
             }
             return back()->with('mensaje', 'Credenciales Incorrectas...');
         }
+
 
     }
 
@@ -59,5 +61,10 @@ class LoginController extends Controller
 
         // return redirect()->route('login.client')->with('mensaje', 'Credenciales Incorrectas...');
 
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('login');
     }
 }

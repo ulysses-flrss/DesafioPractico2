@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -50,7 +52,7 @@ class ClientController extends Controller
         $client->password = $request->input('password');
         $client->state = $request->input('state');
         $client->save();
-        return to_route('client.index');
+        return to_route('client.listar');
         
     }
 
@@ -89,7 +91,7 @@ class ClientController extends Controller
         $edit_client->name = $request->input('name');
         $edit_client->last_name = $request->input('last_name');
         $edit_client->email = $request->input('email');
-        $edit_client->password = $request->input('password');
+        // $edit_client->password = $request->input('password');
         $edit_client->state = $request->input('state');
         $edit_client->save();
         return redirect()->route('client.index');
@@ -105,4 +107,11 @@ class ClientController extends Controller
     {
         $client->delete();
     }
+
+    public function listarProductos(){
+        $products = Product::get();
+
+        return view('index', compact('products'));
+    }
+    
 }
