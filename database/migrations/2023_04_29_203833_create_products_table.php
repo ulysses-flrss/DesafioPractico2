@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name'); // Nombre del Producto
             $table->string('description'); // Descripción del Producto
             $table->string('img'); // Ruta de la imagen del producto (.jpg, .png)
-            $table->integer('category'); // Categoría del producto
+            $table->unsignedBigInteger('category'); // Categoría del producto
             $table->float('price'); // Precio del producto
             $table->integer('stock'); // Existencias del producto
             $table->timestamps();

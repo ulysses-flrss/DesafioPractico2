@@ -39,8 +39,8 @@ class ClientController extends Controller
         $request->validate([
             'name'=> ['required'],
             'last_name'=> ['required'],
-            'email'=> ['required'],
-            'password'=> ['required']
+            'email'=> ['required', 'email'],
+            'password'=> ['required', 'confirmed']
         ]);
 
         $client = new Client();
@@ -73,7 +73,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        return view('client.edit', $client);
+        return view('client.edit', ['client' => $client]);
     }
 
     /**

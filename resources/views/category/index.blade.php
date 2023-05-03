@@ -4,8 +4,10 @@
 
 @section('content')
 
-    <a href="{{route('category.create')}}" class="waves-effect waves-light btn">Agregar Categoria</a>
+    <a href="{{route('category.create')}}" class="waves-effect waves-light btn" id="agregar">Agregar Categoria</a>
     <div>
+        <h1>Categorias</h1>
+        <br>
         <table class="striped">
             <thead>
                 <th>ID de Categoría</th>
@@ -21,13 +23,13 @@
                             <form method="POST" action="{{ route('category.destroy', ['category' => $cat]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit">Eliminar</button>
+                                <button type="submit" class="waves-effect waves-light btn" id="eliminar">Eliminar</button>
                             </form>
 
-                            <form method="POST" action="{{ route('category.edit', ['category' => $cat]) }}">
+                            <form method="GET" action="{{ route('category.edit', ['category' => $cat]) }}">
                                 @csrf
-                                @method('PUT')
-                                <button type="submit">Modificar</button>
+                                @method('GET')
+                                <button type="submit" class="waves-effect waves-light btn" id="modificar">Modificar</button>
                             </form>
                         </td>
                     </tr>

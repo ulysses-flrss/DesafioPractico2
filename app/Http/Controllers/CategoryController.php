@@ -64,8 +64,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
-    {
-        return view('category.edit', $category);
+    {                               // $category
+        return view('category.edit', ['category' => $category]);
     }
 
     /**
@@ -78,6 +78,11 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $edit_category = $category;
+
+        $request->validate([
+            'name' => 'required'
+        ]);
+        
         $edit_category->name = $request->input('name');
         $edit_category->save();
         return redirect()->route('category.index');

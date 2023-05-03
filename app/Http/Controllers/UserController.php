@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -36,22 +37,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-             'name'=> ['required'],
-             'last_name'=> ['required'],
-             'email'=> ['required'],
-             'password'=> ['required'],
-             'user_type'=> ['required'],
+        $this->validate($request, [
+            'name'=> 'required|min:5',
+            'last_name'=> ['required'],
+            'email'=> ['required', 'email'],
+            'password'=> ['required'],
+            'user_type'=> ['required'],
         ]);
 
         $user = new User();
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->password =  Hash::make($request->input('password'));
         $user->user_type = $request->input('user_type');
         $user->save();
-        return to_route('users.index');
+        return to_route('user.index');
         
     }
 
@@ -72,9 +73,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $product)
+    public function edit(User $user)
     {
-        return view('user.edit', $product);
+        return view('user.edit', ['user' => $user]);
     }
 
     /**
@@ -90,7 +91,7 @@ class UserController extends Controller
         $edit_user->name = $request->input('name');
         $edit_user->last_name = $request->input('last_name');
         $edit_user->email = $request->input('email');
-        $edit_user->password = $request->input('password');
+        $edit_user->password = Hash::make($request->input('password'));
         $edit_user->user_type = $request->input('user_type');
         $edit_user->save();
         return redirect()->route('user.index');

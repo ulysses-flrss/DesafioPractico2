@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product; 
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');    
+        $categories = Category::get();
+        return view('product.create', compact('categories'));    
     }
 
     /**
@@ -37,21 +39,23 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'id' => ['required', 'regex:/^PROD[0-9]{5}$/'],
             'name'=> ['required'],
             'description'=> ['required'],
-            'img'=> ['required'],
+            //'img'=> ['mimes:jpg,png'],
             'category'=> ['required'],
             'price'=> ['required'],
             'stock'=> ['required']
         ]);
 
         $product = new Product();
-            $product->name = $request->input('name');
-            $product->description = $request->input('description');
-            $product->img = $request->input('img');
-            $product->category = $request->input('category');
-            $product->price = $request->input('price');
-            $product->stock = $request->input('stock');
+        $product->id = $request->input('id');
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->img = NULL;
+        $product->category = $request->input('category');
+        $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
         $product->save();
         return to_route('product.index');
         
@@ -76,7 +80,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', $product);
+        $categories = Category::get();
+        return view('product.edit', compact(['product', 'categories']));
     }
 
     /**
@@ -91,7 +96,7 @@ class ProductController extends Controller
         $edit_product = $product;
         $edit_product->name = $request->input('name');
         $edit_product->description = $request->input('description');
-        $edit_product->img = $request->input('img');
+        //$edit_product->img = $request->input('img');
         $edit_product->category = $request->input('category');
         $edit_product->price = $request->input('price');
         $edit_product->stock = $request->input('stock');

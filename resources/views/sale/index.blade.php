@@ -4,6 +4,8 @@
 
 @section('content')
 <div >
+    <h1>Ventas registradas:</h1>
+    <br>
     <table class="striped">
         <thead>
             <th>ID de la Venta</th>
@@ -20,13 +22,8 @@
                         <td>{{$sal['quantity']}}</td>
                         <td>{{$sal['saleDate']}}</td>
                         <td>{{$sal['total']}}</td>
-                        <td>
-                            <form method="POST" action="{{ route('sale.destroy', ['sale' => $sal]) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">Eliminar</button>
-                            </form>
-                        </td>
+
+                        
                     </tr>
                 @endforeach
         </tbody>

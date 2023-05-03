@@ -1,3 +1,29 @@
 /* body {
     padding: 50px;
 } */
+
+.error-message{
+    background-color: #ef5350 ;
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+#agregar{
+    margin: 15px;
+}
+
+#eliminar, #modificar{
+    margin: 5px;
+}
+
+h1{
+    text-align: center;
+}
+
+#interfaz{
+    margin: 50px;
+    text-align: center;
+    padding: 30px;
+}
