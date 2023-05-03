@@ -41,7 +41,7 @@ class ClientController extends Controller
         $request->validate([
             'name'=> ['required'],
             'last_name'=> ['required'],
-            'email'=> ['required', 'email'],
+            'email'=> ['required', 'email', 'unique:clients'],
             'password'=> ['required', 'confirmed']
         ]);
 
@@ -49,7 +49,7 @@ class ClientController extends Controller
         $client->name = $request->input('name');
         $client->last_name = $request->input('last_name');
         $client->email = $request->input('email');
-        $client->password = $request->input('password');
+        $client->password = Hash::make($request->input('password'));
         $client->state = $request->input('state');
         $client->save();
         return to_route('client.listar');
@@ -112,6 +112,10 @@ class ClientController extends Controller
         $products = Product::get();
 
         return view('index', compact('products'));
+    }
+
+    public function carritoCompras() {
+        return view('carrito');
     }
     
 }

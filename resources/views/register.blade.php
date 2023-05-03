@@ -5,7 +5,7 @@
 @section('content')
 <h1>Nueva Cuenta</h1>
 <div class="row">
-    <form action="{{route('client.store')}}" class="col s12" method="POST">
+    <form action="{{route('register.client')}}" class="col s12" method="POST">
     @csrf    
 
     <div class="row">

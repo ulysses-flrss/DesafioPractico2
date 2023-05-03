@@ -30,8 +30,8 @@
         <nav>
             <div  class="nav-wrapper">
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{route('product.index')}}">Productos</a></li>
-                    <li><a href="{{route('sale.index')}}">Carrito de Compras</a></li>
+                    <li><a href="{{route('client.listar')}}">Productos</a></li>
+                    <li><a href="{{route('client.carrito')}}">Carrito de Compras</a></li>
                     <li><a href="{{route('logout')}}">Cerrar Sesión</a></li>
                 </ul>
             </div>

@@ -19,52 +19,33 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
         
-        
+    
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            //return dump(Auth::user());  
             return redirect()->route('category.index');
         } else {
-            if (Auth::attempt($credentials )) {
-                $request->session()->regenerate();
-                return redirect()->route('client.listar');
+            if (Auth::guard('client')->attempt($credentials)) {
+                    if (Auth::guard('client')->attempt(['email' => $credentials['email'], 'password' => $credentials['password'], 'state' => 'enable'])) {
+                    $request->session()->regenerate();
+                    return redirect()->route('client.listar');
+                } else {
+                    return back()->with('mensaje', 'Usuario Deshabilitado...')->withInput();
+                }
+            } else {
+                return back()->with('mensaje', 'Credenciales Incorrectas...')->withInput();
             }
-            return back()->with('mensaje', 'Credenciales Incorrectas...');
-        }
-
-
-    }
-
-    public function getClient(Request $request) {
-
-
-        $rs = DB::table('clients')
-            ->select('*')
-            ->where([
-                ['email', $request->input('email')],
-                ['password', $request->input('password')]
-            ])
-            ->get();
-
-
             
-            // return var_dump(count($rs));
-
-        if (count($rs) > 0) {
-            return true;
-        } else {
-            return false;
+            
         }
-        
 
-        
-
-        // return redirect()->route('login.client')->with('mensaje', 'Credenciales Incorrectas...');
 
     }
 
     public function logout() {
         Auth::logout();
+        Auth::guard('client')->logout();
         return redirect('login');
     }
 }

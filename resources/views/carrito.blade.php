@@ -8,14 +8,14 @@
 <br>
 <table>
     <thead>
-        <th>Nombre</th>
+        <th>Nombre del Producto</th>
         <th>Cantidad</th>
         <th>Total</th>
     </thead>
     <tbody>
-        @foreach ( as )
+        {{-- @foreach ( as )
             
-        @endforeach
+        @endforeach --}}
     </tbody>
 </table>
 <div>

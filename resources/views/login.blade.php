@@ -14,7 +14,7 @@
     <div class="row">
         <div class="input-field col s12">
             <label for="email">Correo:</label>
-            <input type="email" name="email" id="email" class="validate">
+            <input type="email" name="email" id="email" class="validate" value="{{old('email')}}">
             @error('email')
                 <p class="error-message">{{$message}}</p>
             @enderror
@@ -22,7 +22,7 @@
 
         <div class="input-field col s12">
             <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password" class="validate">
+            <input type="password" name="password" id="password" class="validate" >
             @error('password')
                 <p class="error-message">{{$message}}</p>
             @enderror

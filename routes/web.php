@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+// Rutas para Usuario aún no autenticado
 Route::get('/', function () {
     return view('login');
 })->name('index');
@@ -35,8 +35,14 @@ Route::get('/register', function () {
     return view('register');
 })->name('client.register');
 
-Route::get('products/listar', [ClientController::class, 'listarProductos'] )->name('client.listar');
+Route::post('/register', [ClientController::class, 'store'])->name('register.client');
 
+
+// Rutas de Interfaz Publica
+Route::get('products/listar', [ClientController::class, 'listarProductos'] )->middleware('auth:client')->name('client.listar');
+Route::get('productos/comprar', [ClientController::class, 'carritoCompras'])->middleware('auth:client')->name('client.carrito');
+
+// Rutas de Interfaz Administrativa
 Route::resource('user', UserController::class)->middleware('auth');
 Route::resource('product', ProductController::class)->middleware('auth');
 Route::resource('sale', SaleController::class)->middleware('auth');
