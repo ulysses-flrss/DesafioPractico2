@@ -43,17 +43,23 @@ class ProductController extends Controller
             'id' => ['required', 'regex:/^PROD[0-9]{5}$/'],
             'name'=> ['required'],
             'description'=> ['required'],
-            //'img'=> ['mimes:jpg,png'],
+            // 'img'=> ['mimes:jpg,png'],
             'category'=> ['required'],
             'price'=> ['required', 'min:0'],
             'stock'=> ['required', 'min:0']
         ]);
 
+
+
+        $path = $request->file('img')->store('public/img');
+        $path = asset('storage/img/'.basename($path));;
+
+        // return dump();
         $product = new Product();
         $product->id = $request->input('id');
         $product->name = $request->input('name');
         $product->description = $request->input('description');
-        $product->img = NULL;
+        $product->img = $path;
         $product->category = $request->input('category');
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');

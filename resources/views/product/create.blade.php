@@ -7,9 +7,8 @@
 <h1>Registrar Productos</h1>
 <br>
 <div class="row">
-    <form action="{{route('product.store')}}" class="col s12" method="POST">
+    <form action="{{route('product.store')}}" class="col s12" method="POST" enctype="multipart/form-data">
     @csrf    
-
     <div class="row">
         <div class="input-field col s12">
             <label for="id">ID:</label>
@@ -34,18 +33,15 @@
                     <p>{{$message}}</p>
             @enderror
         </div>
-        {{-- <div class="file-field input-field">
-            <div class="btn">
-                <span>Subir imagen</span>
-                <input type="file" accept="image/png,image/jpeg,image/jpg">
-                @error('file')
+    
+
+                <input type="file" name="img" id="img" accept="image/png,image/jpeg,image/jpg" >
+                @error('img')
                     <p>{{$message}}</p>
                 @enderror
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-            </div>
-        </div> --}}
+
+    
+
         <div class="input-field col s12">
             <select name="category" id="category">
                 @foreach ($categories as $cat)
@@ -53,7 +49,7 @@
                 @endforeach
             </select>
             @error('category')
-            <p>{{$message}}</p>
+                <p>{{$message}}</p>
             @enderror
             <label for="category">Categoria:</label>
         </div>
@@ -72,9 +68,9 @@
             @error('stock')
                     <p>{{$message}}</p>
             @enderror
+            <input type="submit" value="Registrar Producto" class="waves-effect waves-light btn">
         </div>
 
-            <input type="submit" value="Registrar Producto" class="waves-effect waves-light btn">
         </form>
 
     </div>

@@ -19,7 +19,7 @@
         @foreach ($products as $prod)
                     <tr>
                         <td>{{$prod['id']}}</td>
-                        <td>{{$prod['img']}}</td>
+                        <td><img src="{{$prod['img']}}" alt="" width="100"></td>
                         <td>{{$prod['name']}}</td>
                         <td>{{$prod['description']}}</td>
                         <td>{{$prod['category']}}</td>
