@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusquedaController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Rutas para Usuario aún no autenticado
-Route::get('/', function () {
-    return view('login');
-})->name('index');
+Route::get('/', [ClientController::class, 'listarProductos'])->name('index');
 
 Route::get('/login', function () {
     return view('login');
@@ -39,7 +38,7 @@ Route::post('/register', [ClientController::class, 'store'])->name('register.cli
 
 
 // Rutas de Interfaz Publica
-Route::get('products/listar', [ClientController::class, 'listarProductos'] )->middleware('auth:client')->name('client.listar');
+Route::get('products/listar', [ClientController::class, 'listarProductos'])->middleware('auth:client')->name('client.listar');
 Route::get('productos/comprar', [ClientController::class, 'carritoCompras'])->middleware('auth:client')->name('client.carrito');
 
 // Rutas de Interfaz Administrativa
@@ -50,3 +49,6 @@ Route::resource('category', CategoryController::class)->middleware('auth');
 Route::resource('client', ClientController::class)->middleware('auth');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+//Ruta de busqueda
+Route::get('/busqueda', [BusquedaController::class, 'buscar'])->name('busqueda');
